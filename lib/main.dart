@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
+// Different types of widget
+
+// Output & Input (visible)=>
+// What the user sees ex. Text(),Card()
+
+// Layout & Control (invisible)
+// Give your app structure and control how visible widgets are drawn onto screen
+// ex.  Row(), Column(), ListView()
+
+// Container is common widget in visible and invisible widgets
+
 void main() => runApp(MyApp());
-
-// "MaterialApp" is the starting point of your app,
-// it tells Flutter that you are going to use Material components and follow material design in your app.
-
-// "Scaffold" is another widget provided by material.dart
-// It is for base page design of app
 
 class MyApp extends StatelessWidget {
   @override
