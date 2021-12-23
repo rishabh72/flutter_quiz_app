@@ -1,48 +1,23 @@
 import 'package:flutter/material.dart';
 
-// void main() {
+void main() => runApp(MyApp());
 
-//   runApp(MyApp());
-// }
+// "MaterialApp" is the starting point of your app,
+// it tells Flutter that you are going to use Material components and follow material design in your app.
 
-// class MyApp extends StatelessWidget {
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Text("First Line In Flutter"),
-//     );
-//   }
-// }
+// "Scaffold" is another widget provided by material.dart
+// It is for base page design of app
 
-// Constructor
-
-// class Person {
-//   String name;
-//   String age;
-
-//   Person(String inputName, int age) {
-//     name = inputName;
-//     this.age = age;
-//   }
-// }
-
-// var p1 = new Person('max', 12);
-
-// class Person {
-//   String name;
-//   String age;
-
-//   //named arguments
-//   Person({@required String inputName, int age = 30}) {
-//     name = inputName;
-//     this.age = age;
-//   }
-// }
-
-// var p2 = new Person(inputName: 'max',age: 12);
-
-// class Person {
-//   String name;
-//   int age;
-
-//   Person({this.name, this.age = 23});
-// }
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My App'),
+        ),
+        body: Text('default Text'),
+      ),
+    );
+  }
+}
