@@ -9,11 +9,19 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   void answerQuestion() {
-    print('Answer chosen');
+    questionIndex += 1;
+    print(questionIndex);
   }
+
+  var questionIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    var questions = [
+      'What is result of 44 + 74 ?',
+      "What is the result of 21 + 56 - 34?",
+      "What is the result of 56 multiplied by 3?"
+    ];
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
@@ -21,19 +29,14 @@ class MyApp extends StatelessWidget {
           ),
           body: Column(
             children: [
-              Text('The question text'),
+              Text(questions[questionIndex]),
               RaisedButton(
                 child: Text('Answer 1'),
-                onPressed: () => print(
-                    "Answer1 pressed"), //anoymous function with single line of code
+                onPressed: answerQuestion,
               ),
               RaisedButton(
                 child: Text('Answer 2'),
-                onPressed: () {
-                  //anoymous function with curely braces
-                  print("Answer 2 selected");
-                  print("Answer 2 chosen");
-                },
+                onPressed: answerQuestion,
               ),
               RaisedButton(
                 child: Text('Answer 3'),
