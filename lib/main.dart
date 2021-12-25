@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 
-// Different types of widget
+// Column widget is used to render widgets in column
 
-// Output & Input (visible)=>
-// What the user sees ex. Text(),Card()
-
-// Layout & Control (invisible)
-// Give your app structure and control how visible widgets are drawn onto screen
-// ex.  Row(), Column(), ListView()
-
-// Container is common widget in visible and invisible widgets
+// list are another type of data type in dart
+// var list = ['hello','man']
 
 void main() => runApp(MyApp());
 
@@ -18,11 +12,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('My App'),
-        ),
-        body: Text('default Text'),
-      ),
+          appBar: AppBar(
+            title: Text('My App'),
+          ),
+          body: Column(
+            children: [
+              Text('The question text'),
+              RaisedButton(
+                child: Text('Answer 1'),
+                onPressed: null,
+              ),
+              RaisedButton(
+                child: Text('Answer 2'),
+                onPressed: null,
+              ),
+              RaisedButton(
+                child: Text('Answer 3'),
+                onPressed: null,
+              ),
+            ],
+          )),
     );
   }
 }
