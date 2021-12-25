@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
 
-// Stateless Widget
-// input data ==> Widget ==> Renders UI(Gets rerendered when input data changes)
-
-// Stateful Widget
-// input data ==> Widget[internal state] ==> Renders UI(Gets rerendered when input data or local state changes)
-
-// We can convert stateless widget into stateful widget using shift + control + R
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  void answerQuestion() {
+// placing _ before classnames makes it private to the file it's placed in.
+
+class _MyAppState extends State<MyApp> {
+  void _answerQuestion() {
     setState(() {
-      questionIndex += 1;
+      _questionIndex += 1;
     });
-    print(questionIndex);
+    print(_questionIndex);
   }
 
-  var questionIndex = 0;
+  var _questionIndex = 0;
+  // we can also make properties and methods private with _
 
   @override
   Widget build(BuildContext context) {
@@ -41,18 +36,18 @@ class MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: [
-              Text(questions[questionIndex]),
+              Text(questions[_questionIndex]),
               RaisedButton(
                 child: Text('Answer 1'),
-                onPressed: answerQuestion,
+                onPressed: _answerQuestion,
               ),
               RaisedButton(
                 child: Text('Answer 2'),
-                onPressed: answerQuestion,
+                onPressed: _answerQuestion,
               ),
               RaisedButton(
                 child: Text('Answer 3'),
-                onPressed: answerQuestion,
+                onPressed: _answerQuestion,
               ),
             ],
           )),
