@@ -24,11 +24,16 @@ class MyApp extends StatelessWidget {
               Text('The question text'),
               RaisedButton(
                 child: Text('Answer 1'),
-                onPressed: answerQuestion,
+                onPressed: () => print(
+                    "Answer1 pressed"), //anoymous function with single line of code
               ),
               RaisedButton(
                 child: Text('Answer 2'),
-                onPressed: answerQuestion,
+                onPressed: () {
+                  //anoymous function with curely braces
+                  print("Answer 2 selected");
+                  print("Answer 2 chosen");
+                },
               ),
               RaisedButton(
                 child: Text('Answer 3'),
