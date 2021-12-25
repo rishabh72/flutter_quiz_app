@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'question.dart';
 
+// For Question Text we will make new Stateless widget
+// Question Widget which render question text
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -8,8 +11,6 @@ class MyApp extends StatefulWidget {
     return _MyAppState();
   }
 }
-
-// placing _ before classnames makes it private to the file it's placed in.
 
 class _MyAppState extends State<MyApp> {
   void _answerQuestion() {
@@ -20,7 +21,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   var _questionIndex = 0;
-  // we can also make properties and methods private with _
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,9 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: [
-              Text(questions[_questionIndex]),
+              Question(
+                questions[_questionIndex],
+              ),
               RaisedButton(
                 child: Text('Answer 1'),
                 onPressed: _answerQuestion,
