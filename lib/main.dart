@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'question.dart';
 import 'answer.dart';
 
-// Now we make separate widget for Answers
-// we will make new widget(Answer widget) in answer.dart file
-//     MyApp
-//       |
-//       |
-//  -------------
-//  |           |
-// Question    Answer
+// Map
+// Map is a key-value pair similar to object in javascript
+// {"a": "123"}
 
-// we will implement how to call function(that is in MyApp) from child widget(Answer)
-//so we will pass function into constructor of child widget
+// Type casting
+// questions[_questionIndex]['answers'] --> dart is not able to understand what will be the data type
+// so we use "as" keyword
+// questions[_questionIndex]['answers'] as List<String>
+
+// ... is spread operator
+// spread operator spread out dart list into comma separated list of items
 
 void main() => runApp(MyApp());
 
@@ -36,25 +36,44 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'What is result of 44 + 74 ?',
-      "What is the result of 21 + 56 - 34?",
-      "What is the result of 56 multiplied by 3?"
+      {
+        'questionText': 'Which is a synonym of synthesis?',
+        'answers': ['picture', 'imitation', 'split', 'blend'],
+        'correctAnswer': 'blend'
+      },
+      {
+        'questionText': "Which is a synonym of epidemic?",
+        'answers': ['artificial', 'swift', 'infectious', 'mocking'],
+        'correctAnswer': 'infectious'
+      },
+      {
+        'questionText': 'Which is a synonym of refrain?',
+        'answers': ['continue', 'abstain', 'subtract', 'permit'],
+        'correctAnswer': 'abstain'
+      },
+      {
+        'questionText': 'Which is a synonym of conjecture?',
+        'answers': ['approval', 'demonstration', 'weight', 'guess'],
+        'correctAnswer': 'guess'
+      }
     ];
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('My App'),
-          ),
-          body: Column(
-            children: [
-              Question(
-                questions[_questionIndex],
-              ),
-              Answer(_answerQuestion),
-              Answer(_answerQuestion),
-              Answer(_answerQuestion)
-            ],
-          )),
+        appBar: AppBar(
+          title: Text('My App'),
+        ),
+        body: Column(
+          children: [
+            Question(
+              questions[_questionIndex]['questionText'],
+            ),
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((option) {
+              return Answer(option, _answerQuestion);
+            }).toList()
+          ],
+        ),
+      ),
     );
   }
 }
