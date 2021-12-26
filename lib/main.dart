@@ -2,17 +2,13 @@ import 'package:flutter/material.dart';
 import 'question.dart';
 import 'answer.dart';
 
-// Map
-// Map is a key-value pair similar to object in javascript
-// {"a": "123"}
-
-// Type casting
-// questions[_questionIndex]['answers'] --> dart is not able to understand what will be the data type
-// so we use "as" keyword
-// questions[_questionIndex]['answers'] as List<String>
-
-// ... is spread operator
-// spread operator spread out dart list into comma separated list of items
+//final vs const
+// final is run time constant but const is both compile time and run time constant.
+// Check out Question widget,at the point of
+// writing value of questionText is not known,
+// it is like dynamic but when code run(compiles) value is locked into widget
+// var list = const [11,12,13]; ==> list = [1,2,3] works but list.add(12) gives error
+// const list = [11,12,13]; => if we change dart gives error
 
 void main() => runApp(MyApp());
 
@@ -35,7 +31,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
+    var questions = const [
       {
         'questionText': 'Which is a synonym of synthesis?',
         'answers': ['picture', 'imitation', 'split', 'blend'],
