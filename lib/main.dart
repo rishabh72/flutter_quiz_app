@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'question.dart';
+import 'answer.dart';
 
-// For Question Text we will make new Stateless widget
-// Question Widget which render question text
+// Now we make separate widget for Answers
+// we will make new widget(Answer widget) in answer.dart file
+//     MyApp
+//       |
+//       |
+//  -------------
+//  |           |
+// Question    Answer
+
+// we will implement how to call function(that is in MyApp) from child widget(Answer)
+//so we will pass function into constructor of child widget
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -39,18 +50,9 @@ class _MyAppState extends State<MyApp> {
               Question(
                 questions[_questionIndex],
               ),
-              RaisedButton(
-                child: Text('Answer 1'),
-                onPressed: _answerQuestion,
-              ),
-              RaisedButton(
-                child: Text('Answer 2'),
-                onPressed: _answerQuestion,
-              ),
-              RaisedButton(
-                child: Text('Answer 3'),
-                onPressed: _answerQuestion,
-              ),
+              Answer(_answerQuestion),
+              Answer(_answerQuestion),
+              Answer(_answerQuestion)
             ],
           )),
     );
