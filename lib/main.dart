@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app_tutorial/result.dart';
 import 'quiz.dart';
 
-// It is recommended to split big widget into multiple small widgets
-// So we will make new component Quiz component and Result component
-// we will create two variables incorrectQuestions and correctQuestions
-// and display them in Result component
+//Depricated Buttons
+// RaisedButton ==> ElevatedButton(color automatically picked by app theme color)
+// FlatButton  ==> TextButton
+// OutlineButton ==> OutlinedButton
 
 void main() => runApp(MyApp());
 
