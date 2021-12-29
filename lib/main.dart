@@ -1,27 +1,11 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
-import 'answer.dart';
+import 'package:quiz_app_tutorial/result.dart';
+import 'quiz.dart';
 
-// if-else condition,if-else if-else if condition, && operator, || operator exists in dart
-
-// null value
-// var username; // username is null
-// username = "max";
-// Or we can explicitly declare username = null
-
-// Null safety => dart(2.12.0)
-// variables can not contain null unless you say they can.
-
-// Null assertion operator
-// If you are sure that expression with nullable type is not null
-// you can use ! operator.
-
-// String name = "rishabh";
-// name = null --> gives error
-// To tell dart that "name" can hold string or null value
-// String? name = "rishabh";
-
-// Ternary operator syntax condion1 ? action1 : action2
+// It is recommended to split big widget into multiple small widgets
+// So we will make new component Quiz component and Result component
+// we will create two variables incorrectQuestions and correctQuestions
+// and display them in Result component
 
 void main() => runApp(MyApp());
 
@@ -33,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var questions = const [
+  final questions = const [
     {
       'questionText': 'Which is a synonym of synthesis?',
       'answers': ['picture', 'imitation', 'split', 'blend'],
@@ -55,8 +39,27 @@ class _MyAppState extends State<MyApp> {
       'correctAnswer': 'guess'
     }
   ];
+  var incorrectQuestions = 0;
+  var correctQuestions = 0;
 
-  void _answerQuestion() {
+  void restartQuizHandler() {
+    setState(() {
+      incorrectQuestions = 0;
+      correctQuestions = 0;
+      _questionIndex = 0;
+    });
+  }
+
+  void _answerQuestion(int qIndex, String chosenAns) {
+    if (questions[qIndex]['correctAnswer'] == chosenAns) {
+      setState(() {
+        correctQuestions += 1;
+      });
+    } else {
+      setState(() {
+        incorrectQuestions += 1;
+      });
+    }
     setState(() {
       _questionIndex += 1;
     });
@@ -66,26 +69,19 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(correctQuestions);
+    print(incorrectQuestions);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('My App'),
         ),
         body: _questionIndex < questions.length
-            ? Column(
-                children: [
-                  Question(
-                    questions[_questionIndex]['questionText'],
-                  ),
-                  ...(questions[_questionIndex]['answers'] as List<String>)
-                      .map((option) {
-                    return Answer(option, _answerQuestion);
-                  }).toList()
-                ],
-              )
-            : Center(
-                child: Text("You are done"),
-              ),
+            ? Quiz(questions, _questionIndex, _answerQuestion)
+            : Result({
+                'correctQuestions': correctQuestions,
+                'incorrectQuestions': incorrectQuestions
+              }, restartQuizHandler),
       ),
     );
   }
